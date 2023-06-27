@@ -1,5 +1,12 @@
 package wzorce_projektowe.builder;
 
+import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+@Data
 public class Person {
 
     private final String name;
@@ -8,12 +15,19 @@ public class Person {
     private final Address address;
     private final int age;
 
+    private List<Person> friends;
+
     private Person(String name, String lastName, Gender gender, Address address, int age) {
         this.name = name;
         this.lastName = lastName;
         this.gender = gender;
         this.address = address;
         this.age = age;
+        this.friends = new ArrayList<>();
+    }
+
+    public void addFriend(Person... person) {
+        friends.addAll(Arrays.asList(person));
     }
 
     public Person.Builder builder() {
